@@ -1,0 +1,5 @@
+node_modules/
+.env
+frontend/dist/
+backend/test_api.js
+backend/test_expense.js
