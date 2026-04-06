@@ -18,8 +18,6 @@ import { Toaster } from 'react-hot-toast';
 
 import './App.css';
 
-import { SearchContext } from './context/SearchContext';
-
 function App() {
   const [user, setUser] = useState(() => {
     try {
@@ -36,7 +34,6 @@ function App() {
   });
 
   const [isLoading, setIsLoading] = useState(true);
-  const [searchQuery, setSearchQuery] = useState('');
   const [theme, setTheme] = useState(() => 
     localStorage.getItem('theme') || 
     (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
@@ -73,36 +70,34 @@ function App() {
   if (isLoading) return <div className="loading">Loading...</div>;
 
   return (
-    <SearchContext.Provider value={{ searchQuery, setSearchQuery }}>
-      <Router>
-        <Toaster position="top-right" />
-        <div className="app-container">
-          {user && <Sidebar logout={logout} user={user} />}
-          <main className={user ? 'main-with-sidebar' : 'main-full'}>
-            {user && <Navbar user={user} theme={theme} setTheme={setTheme} />}
+    <Router>
+      <Toaster position="top-right" />
+      <div className="app-container">
+        {user && <Sidebar logout={logout} user={user} />}
+        <main className={user ? 'main-with-sidebar' : 'main-full'}>
+          {user && <Navbar user={user} theme={theme} setTheme={setTheme} />}
 
-            <div className="content">
-              <Routes>
-                <Route path="/login" element={!user ? <Login login={login} /> : <Navigate to="/" />} />
-                <Route path="/register" element={!user ? <Register /> : <Navigate to="/" />} />
-                
-                <Route path="/" element={user ? <ErrorBoundary><Dashboard user={user} /></ErrorBoundary> : <Navigate to="/login" />} />
+          <div className="content">
+            <Routes>
+              <Route path="/login" element={!user ? <Login login={login} /> : <Navigate to="/" />} />
+              <Route path="/register" element={!user ? <Register /> : <Navigate to="/" />} />
+              
+              <Route path="/" element={user ? <ErrorBoundary><Dashboard user={user} /></ErrorBoundary> : <Navigate to="/login" />} />
 
-                <Route path="/add-expense" element={user ? <AddExpense /> : <Navigate to="/login" />} />
-                <Route path="/add-income" element={user ? <AddIncome /> : <Navigate to="/login" />} />
-                <Route path="/set-budget" element={user ? <SetBudget /> : <Navigate to="/login" />} />
-                <Route path="/settings" element={user ? <Settings user={user} setUser={setUser} /> : <Navigate to="/login" />} />
-                <Route path="/recurring" element={user ? <Recurring /> : <Navigate to="/login" />} />
-                <Route path="/goals" element={user ? <Goals /> : <Navigate to="/login" />} />
-                <Route path="/import" element={user ? <Import /> : <Navigate to="/login" />} />
-                
-                <Route path="*" element={<Navigate to="/" />} />
-              </Routes>
-            </div>
-          </main>
-        </div>
-      </Router>
-    </SearchContext.Provider>
+              <Route path="/add-expense" element={user ? <AddExpense /> : <Navigate to="/login" />} />
+              <Route path="/add-income" element={user ? <AddIncome /> : <Navigate to="/login" />} />
+              <Route path="/set-budget" element={user ? <SetBudget /> : <Navigate to="/login" />} />
+              <Route path="/settings" element={user ? <Settings user={user} setUser={setUser} /> : <Navigate to="/login" />} />
+              <Route path="/recurring" element={user ? <Recurring /> : <Navigate to="/login" />} />
+              <Route path="/goals" element={user ? <Goals /> : <Navigate to="/login" />} />
+              <Route path="/import" element={user ? <Import /> : <Navigate to="/login" />} />
+              
+              <Route path="*" element={<Navigate to="/" />} />
+            </Routes>
+          </div>
+        </main>
+      </div>
+    </Router>
   );
 }
 

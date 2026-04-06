@@ -6,7 +6,12 @@ function Sidebar({ logout, user }) {
   return (
     <div className="sidebar">
       <div className="sidebar-brand">
-        <h2 className="brand-title">ExpenseAI</h2>
+        <img
+          className="brand-logo"
+          src="/logo.png"
+          alt="FinSight"
+          loading="eager"
+        />
       </div>
       <nav className="sidebar-nav">
         <NavLink to="/" className={({ isActive }) => (isActive ? 'nav-item active' : 'nav-item')}>

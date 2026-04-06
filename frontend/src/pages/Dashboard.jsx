@@ -20,7 +20,6 @@ import {
 import { Pie, Line, Bar } from 'react-chartjs-2';
 import api from '../services/api';
 import { formatCurrency } from '../utils/formatCurrency';
-import { SearchContext } from '../context/SearchContext';
 import AIAdviceWidget from '../components/AIAdviceWidget';
 import ComparisonChart from '../components/ComparisonChart';
 
@@ -38,7 +37,6 @@ function Dashboard({ user }) {
   const [filters, setFilters] = useState({ category: '', from: '', to: '', amount: '' });
   const [totalPages, setTotalPages] = useState(1);
   const [page, setPage] = useState(1);
-  const { searchQuery } = useContext(SearchContext);
   const [showBudgetAlert, setShowBudgetAlert] = useState(true);
 
   useEffect(() => {
@@ -48,7 +46,7 @@ function Dashboard({ user }) {
 
   useEffect(() => {
     fetchExpenses();
-  }, [filters, page, searchQuery]);
+  }, [filters, page]);
 
 
 
@@ -68,7 +66,7 @@ function Dashboard({ user }) {
   const fetchExpenses = async () => {
     try {
        // Note: the backend returns { data: [], ... } due to pagination
-      const queryParams = { ...filters, search: searchQuery, page, limit: 10 };
+      const queryParams = { ...filters, page, limit: 10 };
       const query = new URLSearchParams(queryParams).toString();
       const res = await api.get(`/expenses?${query}`);
       setExpenses(res.data.data || []);

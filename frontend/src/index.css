@@ -147,6 +147,19 @@ input:focus {
   letter-spacing: -0.025em;
 }
 
+.sidebar-brand {
+  margin-bottom: 2rem;
+}
+
+.brand-logo {
+  display: block;
+  width: 190px;
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.35));
+}
+
 .sidebar-nav {
   flex: 1;
   display: flex;
@@ -423,6 +436,53 @@ input:focus {
   position: sticky;
   top: 0;
   z-index: 90;
+}
+
+/* Import Upload Styles */
+.upload-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.upload-input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+  width: 1px;
+  height: 1px;
+}
+
+.upload-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(99, 102, 241, 0.15);
+  border: 1px solid rgba(99, 102, 241, 0.35);
+  color: var(--text-primary);
+  padding: 0.55rem 0.85rem;
+  border-radius: 10px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.upload-btn:hover {
+  background: rgba(99, 102, 241, 0.22);
+}
+
+.upload-filename {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  max-width: 520px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.navbar-no-search {
+  justify-content: flex-end;
 }
 
 .navbar-search {

@@ -18,7 +18,7 @@ app.use('/api/goals', require('./routes/goalsRoutes'));
 
 // Default Route
 app.get("/", (req, res) => {
-  res.send("Expense Tracker API is running...");
+  res.send("FinSight API is running...");
 });
 
 const PORT = process.env.PORT || 5000;

@@ -9,10 +9,15 @@ export default function Import() {
   const [preview, setPreview] = useState([]);
   const [loading, setLoading] = useState(false);
   const [imported, setImported] = useState(null);
+  const [selectedFileName, setSelectedFileName] = useState('');
 
   const handleUpload = async (e) => {
     const file = e.target.files[0];
-    if (!file) return;
+    if (!file) {
+      setSelectedFileName('');
+      return;
+    }
+    setSelectedFileName(file.name);
     setLoading(true);
     const form = new FormData();
     form.append('file', file);
@@ -47,7 +52,11 @@ export default function Import() {
       <div className='page-header'><FileText size={24}/> <h1>Import Bank Statement</h1></div>
       <div className='card glass'>
         <p className='text-muted mb-3'>Upload your bank statement CSV (HDFC, SBI, ICICI formats supported)</p>
-        <input type='file' accept='.csv,.xlsx,.xls' onChange={handleUpload} style={{marginBottom:'1rem'}}/>
+        <label className='upload-row'>
+          <input className='upload-input' type='file' accept='.csv,.xlsx,.xls' onChange={handleUpload} />
+          <span className='upload-btn'><Upload size={16} /> Choose file</span>
+          <span className='upload-filename'>{selectedFileName || 'No file chosen'}</span>
+        </label>
         {loading && <p>Parsing file...</p>}
       </div>
       {preview.length > 0 && (<>
