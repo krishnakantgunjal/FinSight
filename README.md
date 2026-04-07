@@ -125,81 +125,68 @@ FinSight/
 ## 📸 Screenshots & Features
 
 ### 📊 Dashboard
-![Dashboard](./Media/Dashboard.png)
-
-Dashboard Role:  
 Provides an overview of total income, expenses, balance, and budget usage.  
 Helps users quickly understand their financial status.
+![Dashboard](./Media/Dashboard.png)
+
 
 ---
 
 ### 💸 Expense Management
-![Expenses](./Media/Expense.png)
-
-Expenses Role:  
 Allows users to add, categorize, and track expenses.  
 Supports filtering by date and category for better insights.
+![Expenses](./Media/Expense.png)
+
 
 ---
 
 ### 💰 Income Tracking
-![Income](./Media/Income.png)
-
-Income Role:  
 Records all income sources and displays monthly income trends.  
 Helps users compare earnings vs spending.
+![Income](./Media/Income.png)
+
 
 ---
 
 ### 📈 Budget Planning
-![Budget](./Media/Budget%20Planning.png)
-
-Budget Role:  
 Users can set monthly budgets and monitor usage.  
 Alerts users when spending approaches limits.
+![Budget](./Media/Budget%20Planning.png)
+
 
 ---
 
 ### 🎯 Savings Goals
-![Goals](./Media/Goals.png)
-
-Goals Role:  
 Allows users to define financial goals (e.g., saving money).  
 Tracks progress visually to motivate users.
+![Goals](./Media/Goals.png)
+
+ 
 
 ---
 
 ### 🔁 Recurring Expenses
-![Recurring](./Media/Recurring%20Expenses.png)
-
-Recurring Role:  
 Automates repeated expenses like rent or subscriptions.  
 Handled using backend cron jobs.
+![Recurring](./Media/Recurring%20Expenses.png)
+
+
 
 ---
 
 ### 🤖 Smart Financial Advice
-![AI Advice](./Media/Smart%20Financial%20Advice.png)
-
-AI Advice Role:  
 Generates personalized financial advice based on user data.  
 Uses AI providers to give actionable suggestions.
+![AI Advice](./Media/Smart%20Financial%20Advice.png)
+
 
 ---
 
 ### ⚙️ Account Settings
+Allows users to manage profile, preferences, and account security.
 ![Settings](./Media/Account%20Settings.png)
 
-Settings Role:  
-Allows users to manage profile, preferences, and account security.
-
----
-
-### 🌐 Full Application View
-![App](./Media/FinSight%20-%20Edited.png)
-
-App Role:  
-Shows the complete UI design and overall system flow.
+  
 ---
 
 ## 🌟 Why This Project Stands Out
