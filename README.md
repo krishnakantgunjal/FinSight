@@ -135,12 +135,6 @@ Allows users to manage account preferences, profile data, and security settings.
 
 ---
 
-### 🌐 Full Application View
-Represents the overall system interface and user experience flow.
-![App](./Media/FinSight%20-%20Edited.png)
-
----
-
 ## 🌟 Why This Project Stands Out
 
 - Combines **Finance + AI (high-demand domain)**  
