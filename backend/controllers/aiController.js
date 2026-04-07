@@ -1,6 +1,15 @@
 const db = require('../config/db');
 const { GoogleGenerativeAI } = require('@google/generative-ai');
-const { OpenAI } = require('openai');
+const OpenAI = require("openai");
+
+const openrouter = new OpenAI({
+  baseURL: "https://openrouter.ai/api/v1",
+  apiKey: process.env.OPENROUTER_API_KEY,
+  defaultHeaders: {
+    "HTTP-Referer": process.env.APP_URL || "https://fin-sight-henna.vercel.app",
+    "X-OpenRouter-Title": process.env.APP_NAME || "FinSight",
+  },
+});
 
 function buildPrompt({
   topCategories,
@@ -135,22 +144,65 @@ async function getOpenAIAdvice(prompt) {
 }
 
 async function getAdviceFromProviders(prompt) {
-  const providers = [
-    { name: 'gemini', fn: getGeminiAdvice },
-    { name: 'groq', fn: getGroqAdvice },
-    { name: 'openai', fn: getOpenAIAdvice }
-  ];
+  let advice = "";
+  let source = "";
 
-  for (const provider of providers) {
+  try {
+    advice = await getGeminiAdvice(prompt);
+    if (advice) source = "gemini";
+  } catch (err) {
+    console.error("gemini advice failed:", err.message);
+  }
+
+  if (!advice) {
     try {
-      const text = await provider.fn(prompt);
-      return { text, source: provider.name };
-    } catch (error) {
-      console.warn(`${provider.name} advice failed: ${error.message}`);
+      advice = await getOpenRouterAdvice(prompt);
+      if (advice) source = "openrouter";
+    } catch (err) {
+      console.error("openrouter advice failed:", err.message);
     }
   }
 
-  throw new Error('All AI providers failed');
+  if (!advice) {
+    try {
+      advice = await getGroqAdvice(prompt);
+      if (advice) source = "groq";
+    } catch (err) {
+      console.error("groq advice failed:", err.message);
+    }
+  }
+
+  if (!advice) {
+    try {
+      advice = await getOpenAIAdvice(prompt);
+      if (advice) source = "openai";
+    } catch (err) {
+      console.error("openai advice failed:", err.message);
+    }
+  }
+
+  if (!advice) {
+    throw new Error("All AI providers failed");
+  }
+
+  return { text: advice, source };
+}
+
+async function getOpenRouterAdvice(prompt) {
+  const model = process.env.OPENROUTER_MODEL || "google/gemini-2.5-flash";
+
+  const completion = await openrouter.chat.completions.create({
+    model,
+    messages: [
+      {
+        role: "user",
+        content: prompt,
+      },
+    ],
+    temperature: 0.4,
+  });
+
+  return completion.choices?.[0]?.message?.content?.trim() || "";
 }
 
 function normalizeAdviceParagraph(aiText) {
