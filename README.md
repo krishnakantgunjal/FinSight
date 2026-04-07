@@ -115,7 +115,6 @@ FinSight/
 │
 ├── Media/                      # Project screenshots
 ├── expense_db.sql              # Database schema
-├── migration_phase2_phase3.sql # DB migrations
 └── .gitignore
 ```
 
@@ -126,73 +125,81 @@ FinSight/
 ## 📸 Screenshots & Features
 
 ### 📊 Dashboard
-![Dashboard](./Media/dashboard.png)
-**Role:**  
+![Dashboard](./Media/Dashboard.png)
+
+Dashboard Role:  
 Provides an overview of total income, expenses, balance, and budget usage.  
 Helps users quickly understand their financial status.
 
 ---
 
 ### 💸 Expense Management
-![Expenses](./Media/expense.png)
-**Role:**  
+![Expenses](./Media/Expense.png)
+
+Expenses Role:  
 Allows users to add, categorize, and track expenses.  
 Supports filtering by date and category for better insights.
 
 ---
 
 ### 💰 Income Tracking
-![Income](./Media/income.png)
-**Role:**  
+![Income](./Media/Income.png)
+
+Income Role:  
 Records all income sources and displays monthly income trends.  
 Helps users compare earnings vs spending.
 
 ---
 
 ### 📈 Budget Planning
-![Budget](./Media/budget-planning.png)
-**Role:**  
+![Budget](./Media/Budget%20Planning.png)
+
+Budget Role:  
 Users can set monthly budgets and monitor usage.  
 Alerts users when spending approaches limits.
 
 ---
 
 ### 🎯 Savings Goals
-![Goals](./Media/goals.png)
-**Role:**  
+![Goals](./Media/Goals.png)
+
+Goals Role:  
 Allows users to define financial goals (e.g., saving money).  
 Tracks progress visually to motivate users.
 
 ---
 
 ### 🔁 Recurring Expenses
-![Recurring](./Media/recurring-expenses.png)
-**Role:**  
+![Recurring](./Media/Recurring%20Expenses.png)
+
+Recurring Role:  
 Automates repeated expenses like rent or subscriptions.  
 Handled using backend cron jobs.
 
 ---
 
 ### 🤖 Smart Financial Advice
-![AI Advice](./Media/smart-financial-advice.png)
-**Role:**  
+![AI Advice](./Media/Smart%20Financial%20Advice.png)
+
+AI Advice Role:  
 Generates personalized financial advice based on user data.  
 Uses AI providers to give actionable suggestions.
 
 ---
 
 ### ⚙️ Account Settings
-![Settings](./Media/account-settings.png)
-**Role:**  
+![Settings](./Media/Account%20Settings.png)
+
+Settings Role:  
 Allows users to manage profile, preferences, and account security.
 
 ---
 
 ### 🌐 Full Application View
-![App](./Media/finsight.png)
-**Role:**  
-Shows the complete UI design and overall system flow.
+![App](./Media/FinSight%20-%20Edited.png)
 
+App Role:  
+Shows the complete UI design and overall system flow.
 ---
 
 ## 🌟 Why This Project Stands Out
