@@ -1,6 +1,3 @@
-CREATE DATABASE IF NOT EXISTS expense_db;
-USE expense_db;
-
 CREATE TABLE IF NOT EXISTS users (
   id INT AUTO_INCREMENT PRIMARY KEY,
   name VARCHAR(100) NOT NULL,
@@ -82,7 +79,4 @@ CREATE TABLE IF NOT EXISTS goals (
   FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
--- Also add performance indexes:
-CREATE INDEX IF NOT EXISTS idx_expenses_user_date ON expenses(user_id, date);
-CREATE INDEX IF NOT EXISTS idx_income_user_date   ON income(user_id, date);
-CREATE INDEX IF NOT EXISTS idx_expenses_user_cat  ON expenses(user_id, category, date);
+-- Performance indexes are managed in migrations / existing DB state.
