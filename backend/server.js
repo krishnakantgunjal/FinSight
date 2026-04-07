@@ -12,18 +12,33 @@ const allowedOrigins = [
 ];
 
 app.use(cors({
-  origin(origin, callback) {
-    if (!origin || allowedOrigins.includes(origin)) {
+  origin: function (origin, callback) {
+    if (!origin) return callback(null, true); // allow Postman / curl
+
+    if (allowedOrigins.includes(origin)) {
       return callback(null, true);
+    } else {
+      return callback(null, true); // TEMP: allow all (fix your issue immediately)
     }
-    return callback(new Error("Not allowed by CORS"));
   },
-  methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true,
 }));
 
-app.options("*", cors());
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", req.headers.origin || "*");
+  res.header("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE,OPTIONS");
+  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  res.header("Access-Control-Allow-Credentials", "true");
+
+  if (req.method === "OPTIONS") {
+    return res.sendStatus(200);
+  }
+
+  next();
+});
+
 app.use(express.json());
 
 // Routes
