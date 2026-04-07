@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate, Link } from 'react-router-dom';
+import { Plus } from 'lucide-react';
 import Dashboard from './pages/Dashboard';
 import Login from './pages/Login';
 import Register from './pages/Register';
@@ -34,6 +35,7 @@ function App() {
   });
 
   const [isLoading, setIsLoading] = useState(true);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   const [theme, setTheme] = useState(() => 
     localStorage.getItem('theme') || 
     (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
@@ -67,15 +69,18 @@ function App() {
     setUser(null);
   };
 
+  const openSidebar = () => setSidebarOpen(true);
+  const closeSidebar = () => setSidebarOpen(false);
+
   if (isLoading) return <div className="loading">Loading...</div>;
 
   return (
     <Router>
       <Toaster position="top-right" />
       <div className="app-container">
-        {user && <Sidebar logout={logout} user={user} />}
+        {user && <Sidebar logout={logout} user={user} isOpen={sidebarOpen} onClose={closeSidebar} />}
         <main className={user ? 'main-with-sidebar' : 'main-full'}>
-          {user && <Navbar user={user} theme={theme} setTheme={setTheme} />}
+          {user && <Navbar user={user} theme={theme} setTheme={setTheme} onMenuClick={openSidebar} />}
 
           <div className="content">
             <Routes>
@@ -97,6 +102,11 @@ function App() {
           </div>
         </main>
       </div>
+      {user && (
+        <Link to="/add-expense" className="fab-action" aria-label="Add expense">
+          <Plus size={24} />
+        </Link>
+      )}
     </Router>
   );
 }

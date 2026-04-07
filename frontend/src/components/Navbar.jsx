@@ -1,10 +1,18 @@
 import React from 'react';
 
-import { User } from 'lucide-react';
+import { Menu, User } from 'lucide-react';
 
-function Navbar({ user, theme, setTheme }) {
+function Navbar({ user, theme, setTheme, onMenuClick }) {
   return (
     <div className="navbar navbar-no-search glass">
+      <button className="menu-btn" onClick={onMenuClick} aria-label="Open menu">
+        <Menu size={20} />
+      </button>
+
+      <div className="mobile-navbar-brand">
+        <img className="mobile-brand-logo" src="/logo.png" alt="FinSight" />
+      </div>
+
       <div className="navbar-actions">
         <button onClick={() => setTheme(t => t === 'dark' ? 'light' : 'dark')} className="theme-toggle-btn">
           {theme === 'dark' ? <span title="Switch to Light Mode">☀️</span> : <span title="Switch to Dark Mode">🌙</span>}

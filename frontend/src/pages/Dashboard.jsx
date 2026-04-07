@@ -275,6 +275,7 @@ function Dashboard({ user }) {
         </div>
 
         <div className="card transactions-card">
+          <div className="swipe-hint">Swipe left/right to view more columns</div>
           <table className="transactions-table">
             <thead>
               <tr>
