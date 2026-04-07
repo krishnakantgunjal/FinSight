@@ -40,10 +40,93 @@ FinSight provides a complete financial management system:
 
 ---
 
+## 📁 Project Structure
+
+```
+FinSight/
+├── backend/
+│   ├── config/
+│   │   └── db.js                 # Database configuration
+│   ├── controllers/             # Business logic (API handlers)
+│   │   ├── aiController.js
+│   │   ├── authController.js
+│   │   ├── budgetController.js
+│   │   ├── dashboardController.js
+│   │   ├── expenseController.js
+│   │   ├── goalsController.js
+│   │   ├── importController.js
+│   │   ├── incomeController.js
+│   │   └── recurringController.js
+│   ├── jobs/
+│   │   └── recurringJob.js      # Cron job for recurring expenses
+│   ├── middleware/
+│   │   ├── authMiddleware.js    # JWT authentication
+│   │   ├── upload.js            # File upload handling
+│   │   └── validate.js          # Request validation
+│   ├── routes/                 # API routes
+│   │   ├── authRoutes.js
+│   │   ├── budgetRoutes.js
+│   │   ├── dashboardRoutes.js
+│   │   ├── expenseRoutes.js
+│   │   ├── goalsRoutes.js
+│   │   ├── incomeRoutes.js
+│   │   └── recurringRoutes.js
+│   ├── utils/
+│   │   ├── mailer.js           # Email utility
+│   │   └── merchantMap.js      # Category mapping
+│   ├── validators/
+│   │   └── expenseValidator.js
+│   ├── .env.example            # Environment variables template
+│   ├── package.json
+│   └── server.js               # Entry point of backend
+│
+├── frontend/
+│   ├── src/
+│   │   ├── components/         # Reusable UI components
+│   │   │   ├── AIAdviceWidget.jsx
+│   │   │   ├── ComparisonChart.jsx
+│   │   │   ├── ErrorBoundary.jsx
+│   │   │   ├── GoalCard.jsx
+│   │   │   ├── Navbar.jsx
+│   │   │   └── Sidebar.jsx
+│   │   ├── pages/              # Application pages
+│   │   │   ├── AddExpense.jsx
+│   │   │   ├── AddIncome.jsx
+│   │   │   ├── Dashboard.jsx
+│   │   │   ├── Goals.jsx
+│   │   │   ├── Import.jsx
+│   │   │   ├── Login.jsx
+│   │   │   ├── Recurring.jsx
+│   │   │   ├── Register.jsx
+│   │   │   ├── SetBudget.jsx
+│   │   │   └── Settings.jsx
+│   │   ├── services/
+│   │   │   └── api.js          # API integration
+│   │   ├── utils/
+│   │   │   ├── exportPDF.js    # PDF export logic
+│   │   │   └── formatCurrency.js
+│   │   ├── App.jsx
+│   │   ├── App.css
+│   │   ├── index.css
+│   │   └── main.jsx            # Entry point of frontend
+│   ├── index.html
+│   ├── vercel.json             # Deployment config
+│   └── package.json
+│
+├── Media/                      # Project screenshots
+├── expense_db.sql              # Database schema
+├── migration_phase2_phase3.sql # DB migrations
+└── .gitignore
+```
+
+> This project follows a modular and scalable architecture similar to production-grade applications.
+
+---
+
 ## 📸 Screenshots & Features
 
 ### 📊 Dashboard
-![Dashboard](./Media/Dashboard.png)
+![Dashboard](./Media/dashboard.png)
 **Role:**  
 Provides an overview of total income, expenses, balance, and budget usage.  
 Helps users quickly understand their financial status.
@@ -51,7 +134,7 @@ Helps users quickly understand their financial status.
 ---
 
 ### 💸 Expense Management
-![Expenses](./Media/Expense.png)
+![Expenses](./Media/expense.png)
 **Role:**  
 Allows users to add, categorize, and track expenses.  
 Supports filtering by date and category for better insights.
@@ -59,7 +142,7 @@ Supports filtering by date and category for better insights.
 ---
 
 ### 💰 Income Tracking
-![Income](./Media/Income.png)
+![Income](./Media/income.png)
 **Role:**  
 Records all income sources and displays monthly income trends.  
 Helps users compare earnings vs spending.
@@ -67,7 +150,7 @@ Helps users compare earnings vs spending.
 ---
 
 ### 📈 Budget Planning
-![Budget](./Media/Budget Planning.png)
+![Budget](./Media/budget-planning.png)
 **Role:**  
 Users can set monthly budgets and monitor usage.  
 Alerts users when spending approaches limits.
@@ -75,7 +158,7 @@ Alerts users when spending approaches limits.
 ---
 
 ### 🎯 Savings Goals
-![Goals](./Media/Goals.png)
+![Goals](./Media/goals.png)
 **Role:**  
 Allows users to define financial goals (e.g., saving money).  
 Tracks progress visually to motivate users.
@@ -83,7 +166,7 @@ Tracks progress visually to motivate users.
 ---
 
 ### 🔁 Recurring Expenses
-![Recurring](./Media/Recurring Expenses.png)
+![Recurring](./Media/recurring-expenses.png)
 **Role:**  
 Automates repeated expenses like rent or subscriptions.  
 Handled using backend cron jobs.
@@ -91,7 +174,7 @@ Handled using backend cron jobs.
 ---
 
 ### 🤖 Smart Financial Advice
-![AI Advice](./Media/Smart Financial Advice.png)
+![AI Advice](./Media/smart-financial-advice.png)
 **Role:**  
 Generates personalized financial advice based on user data.  
 Uses AI providers to give actionable suggestions.
@@ -99,14 +182,14 @@ Uses AI providers to give actionable suggestions.
 ---
 
 ### ⚙️ Account Settings
-![Settings](./Media/Account Settings.png)
+![Settings](./Media/account-settings.png)
 **Role:**  
 Allows users to manage profile, preferences, and account security.
 
 ---
 
 ### 🌐 Full Application View
-![App](./Media/FinSight - Edited.png)
+![App](./Media/finsight.png)
 **Role:**  
 Shows the complete UI design and overall system flow.
 
